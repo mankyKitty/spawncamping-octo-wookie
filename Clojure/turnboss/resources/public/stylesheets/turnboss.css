@@ -1,0 +1,14 @@
+.main-blurb {
+    background-color: white;
+    color: #000;
+}
+
+.roster-wrapper {
+    background-color: #fff;
+    color: #000;
+}
+
+#roster {
+    margin-top: 15px;
+    list-style:none;
+}
