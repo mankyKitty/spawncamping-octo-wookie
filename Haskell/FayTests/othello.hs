@@ -48,3 +48,12 @@ nextSquare dir bSize sPlc =
 -- Create a list that represents our board
 createBoard :: Int -> [(Int, Char)]
 createBoard n = [(x,y)|x <- [0.. (n ^ 2)], y <- ['e']]
+
+-- | Get an element by its ID.
+getElementById :: String -> Fay Element
+getElementById = ffi "document['getElementById'](%1)"
+
+main :: Fay ()
+main = do
+  board <- getElementById "game-board"
+  appendChild (getElementById "game-board") $ createBoard 3
