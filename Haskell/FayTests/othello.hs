@@ -1,8 +1,6 @@
-{-# LANGUAGE EmptyDataDecls #-}
-
+-- Othello Implementation in Haskell
 import Prelude
-import DOM
-import FFI
+import Data.List
 
 data BoardMove = Lft
                | Rht
@@ -12,7 +10,7 @@ data BoardMove = Lft
                | UpRht
                | DwnLft
                | DwnRht
-               deriving Show
+               deriving (Show,Eq)
 
 -- Get a list of all directions
 allDirections :: [BoardMove]
@@ -26,14 +24,14 @@ moveOnBoard max newLoc = (newLoc > 0) && (newLoc < (max ^ 2))
 -- on the board.
 calcMove :: BoardMove -> Int -> Int -> Int
 calcMove dir max start = case dir of
-  Lft -> start - 1
-  Rht -> start + 1
-  Up -> start + max
-  Dwn -> start - max
-  UpLft -> start + max - 1
-  UpRht -> start + max + 1
-  DwnLft -> start - max - 1
-  DwnRht -> start - max + 1
+  Lft    -> start - 1
+  Rht    -> start + 1
+  Up     -> start - max
+  Dwn    -> start + max
+  UpLft  -> start - max - 1
+  UpRht  -> start - max + 1
+  DwnLft -> start + max - 1
+  DwnRht -> start + max + 1
 
 -- Get a list of the surrounding valid squares
 nextSquare :: BoardMove -> Int -> Int -> Maybe (BoardMove, Int)
@@ -45,15 +43,10 @@ nextSquare dir bSize sPlc =
    then Just (dir, calcMove dir bSize sPlc)
    else Nothing
 
+-- Check all surrounding squares to see if any can be flipped
+neighbours :: Int -> Int -> [Maybe (BoardMove, Int)]
+neighbours bSize sPlc = filter (\y -> y /= Nothing) $ [(nextSquare x bSize sPlc) | x <- allDirections]
+
 -- Create a list that represents our board
 createBoard :: Int -> [(Int, Char)]
 createBoard n = [(x,y)|x <- [0.. (n ^ 2)], y <- ['e']]
-
--- | Get an element by its ID.
-getElementById :: String -> Fay Element
-getElementById = ffi "document['getElementById'](%1)"
-
-main :: Fay ()
-main = do
-  board <- getElementById "game-board"
-  appendChild (getElementById "game-board") $ createBoard 3

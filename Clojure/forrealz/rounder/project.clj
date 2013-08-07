@@ -8,8 +8,7 @@
   :plugins [[lein-ring "0.8.5"]
             [lein-cljsbuild "0.3.2"]]
   :ring {:handler rounder.handler/app}
-  :profiles
-  {:dev {:dependencies [[ring-mock "0.1.5"]]}}
+  :profiles {:dev {:dependencies [[ring-mock "0.1.5"]]}}
   :cljsbuild {:builds
               [{;; CLJS Source Path
                 :source-paths ["src/cljs"]

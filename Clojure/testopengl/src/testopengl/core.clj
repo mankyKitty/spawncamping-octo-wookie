@@ -38,7 +38,7 @@
   (GL11/glDepthFunc GL11/GL_LEQUAL)
   (GL11/glHint GL11/GL_PERSPECTIVE_CORRECTION_HINT GL11/GL_NICEST))
 
-(defn render [program]
+(defn render []
   (GL11/glClear (bit-or GL11/GL_COLOR_BUFFER_BIT GL11/GL_DEPTH_BUFFER_BIT))
   (draw)
   (Display/update)
@@ -46,9 +46,9 @@
 
 (defn -main [& args]
   (initGL)
-
     (loop [close? (Display/isCloseRequested)]
       (if-not close?
+        (render)
         (do
           (recur (Display/isCloseRequested)))))
   (Display/destroy))
