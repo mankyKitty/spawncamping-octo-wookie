@@ -1,0 +1,9 @@
+{application,first_cowboy,
+             [{description,[]},
+              {vsn,"1"},
+              {registered,[]},
+              {applications,[kernel,stdlib,cowboy]},
+              {mod,{first_cowboy_app,[]}},
+              {env,[]},
+              {modules,[first_cowboy,first_cowboy_app,first_cowboy_sup,
+                        toppage_handler]}]}.

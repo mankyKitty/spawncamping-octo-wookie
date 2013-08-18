@@ -17,5 +17,5 @@ fizzBuzz n
 
 fizzList n = map (\x -> if null $ fizzBuzz x
                         then show x
-                        else fizzBuzz x)
-             [1..n]
+                        else fizzBuzz x
+                        ) [1..n]
