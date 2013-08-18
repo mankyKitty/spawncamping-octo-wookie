@@ -29358,6 +29358,41 @@ clojure.browser.net.xpc_connection = function() {
   xpc_connection.cljs$core$IFn$_invoke$arity$1 = xpc_connection__1;
   return xpc_connection
 }();
+goog.provide("modern_cljs.login");
+goog.require("cljs.core");
+modern_cljs.login.validate_form = function validate_form() {
+  var email = document.getElementById("email");
+  var pass = document.getElementById("password");
+  if(function() {
+    var and__3941__auto__ = cljs.core.count.call(null, email.value) > 0;
+    if(and__3941__auto__) {
+      return cljs.core.count.call(null, pass.value) > 0
+    }else {
+      return and__3941__auto__
+    }
+  }()) {
+    return true
+  }else {
+    alert("Please, complete the form!");
+    return false
+  }
+};
+modern_cljs.login.init = function init() {
+  if(cljs.core.truth_(function() {
+    var and__3941__auto__ = document;
+    if(cljs.core.truth_(and__3941__auto__)) {
+      return document.getElementById
+    }else {
+      return and__3941__auto__
+    }
+  }())) {
+    var login_form = document.getElementById("loginForm");
+    return login_form.onsubmit = modern_cljs.login.validate_form
+  }else {
+    return null
+  }
+};
+window.onload = modern_cljs.login.init;
 goog.provide("clojure.browser.repl");
 goog.require("cljs.core");
 goog.require("clojure.browser.event");
