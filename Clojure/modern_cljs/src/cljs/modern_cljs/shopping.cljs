@@ -2,6 +2,10 @@
   (:require [domina :as dom]
             [domina.events :as ev]))
 
+(defn add-help []
+  (dom/append! (dom/by-id "shoppingForm")
+               "<div class='help'>Click to calculate</div>"))
+
 (defn calculate []
   (let [quantity (dom/value (dom/by-id "quantity"))
         price (dom/value (dom/by-id "price"))
@@ -16,4 +20,5 @@
 (defn ^:export init []
   (if (and js/document
            (.-getElementById js/document))
-    (ev/listen! (dom/by-id "calc") :click calculate)))
+    (ev/listen! (dom/by-id "calc") :click calculate)
+    (ev/listen! (dom/by-id "calc") :mouseover add-help)))

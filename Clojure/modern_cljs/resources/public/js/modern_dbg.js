@@ -33279,6 +33279,9 @@ goog.provide("modern_cljs.shopping");
 goog.require("cljs.core");
 goog.require("domina.events");
 goog.require("domina");
+modern_cljs.shopping.add_help = function add_help() {
+  return domina.append_BANG_.call(null, domina.by_id.call(null, "shoppingForm"), "<div class='help'>Click to calculate</div>")
+};
 modern_cljs.shopping.calculate = function calculate() {
   var quantity = domina.value.call(null, domina.by_id.call(null, "quantity"));
   var price = domina.value.call(null, domina.by_id.call(null, "price"));
@@ -33298,7 +33301,7 @@ modern_cljs.shopping.init = function init() {
   }())) {
     return domina.events.listen_BANG_.call(null, domina.by_id.call(null, "calc"), "\ufdd0:click", modern_cljs.shopping.calculate)
   }else {
-    return null
+    return domina.events.listen_BANG_.call(null, domina.by_id.call(null, "calc"), "\ufdd0:mouseover", modern_cljs.shopping.add_help)
   }
 };
 goog.exportSymbol("modern_cljs.shopping.init", modern_cljs.shopping.init);
