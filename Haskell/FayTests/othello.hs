@@ -1,8 +1,5 @@
-{-# LANGUAGE EmptyDataDecls #-}
-
-import Prelude
-import DOM
-import FFI
+-- Othello Implementation in Haskell
+import Data.List
 
 data BoardMove = Lft
                | Rht
@@ -26,12 +23,12 @@ moveOnBoard max newLoc = (newLoc > 0) && (newLoc < (max ^ 2))
 -- on the board.
 calcMove :: BoardMove -> Int -> Int -> Int
 calcMove dir max start = case dir of
-  Lft -> start - 1
-  Rht -> start + 1
-  Up -> start + max
-  Dwn -> start - max
-  UpLft -> start + max - 1
-  UpRht -> start + max + 1
+  Lft    -> start - 1
+  Rht    -> start + 1
+  Up     -> start + max
+  Dwn    -> start - max
+  UpLft  -> start + max - 1
+  UpRht  -> start + max + 1
   DwnLft -> start - max - 1
   DwnRht -> start - max + 1
 
@@ -48,12 +45,3 @@ nextSquare dir bSize sPlc =
 -- Create a list that represents our board
 createBoard :: Int -> [(Int, Char)]
 createBoard n = [(x,y)|x <- [0.. (n ^ 2)], y <- ['e']]
-
--- | Get an element by its ID.
-getElementById :: String -> Fay Element
-getElementById = ffi "document['getElementById'](%1)"
-
-main :: Fay ()
-main = do
-  board <- getElementById "game-board"
-  appendChild (getElementById "game-board") $ createBoard 3

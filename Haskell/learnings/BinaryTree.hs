@@ -59,6 +59,8 @@ treeFromList [] = Empty
 treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
                       (treeFromList (filter (>x) xs))
 
+values = [-4.3, -2.4, -1.2, 0.4, 2.3, 5.9, 10.5, 29.1, 5.3, -2.4, -14.5, 2.9, 2.3]
+
 nullTree = Node 0 nullTree nullTree
 
 treeTakeDepth _ Empty = Empty
