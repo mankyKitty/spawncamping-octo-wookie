@@ -19,7 +19,10 @@ Icon
 auto-save-list
 tramp
 .\#*
+.cabal-dev
 
 # Org-mode
 .org-id-locations
 *_archive
+
+*.beam

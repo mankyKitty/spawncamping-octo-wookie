@@ -17,5 +17,10 @@ fizzBuzz n
 
 fizzList n = map (\x -> if null $ fizzBuzz x
                         then show x
+<<<<<<< HEAD
                         else fizzBuzz x)
              [1..n]
+=======
+                        else fizzBuzz x
+                        ) [1..n]
+>>>>>>> c33c1ad4e24b9976ebd5a34d179fe4602a2644ad

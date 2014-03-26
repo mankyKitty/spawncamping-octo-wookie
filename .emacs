@@ -80,7 +80,7 @@
 ;; Enable paredit for a couple for non lisp modes; tweak
 ;; paredit-space-for-delimiter-predicates to avoid inserting spaces
 ;; before open parens.
-(dolist (mode '(php javascript c++ c coffee java javap))
+(dolist (mode '(php javascript c++ c coffee java javap erlang))
   (auto-complete-mode 1)
   (add-hook (intern (format "%s-mode-hook" mode))
             '(lambda ()
@@ -125,6 +125,9 @@
 
 (setq show-paren-mode t)
 
+;; Add my trigger for erlang mode for .erl files
+(add-to-list 'auto-mode-alist '("\\.erl$" . erlang-mode))
+
 ;; Setup my clojure run-lisp environment
 (setq inferior-lisp-program "lein repl")
 
@@ -162,6 +165,12 @@
 
 ;; These are the proxy settings for FC
 ;;(setq url-using-proxy t)
-;;(setq url-proxy-services '(("http" . "chalmers:Kentucky83@csydl217.au.fcl.internal:3128")))
+;;(setq url-proxy-services '(("http" . "<USER>:<PASS>@bne-proxy.au.fcl.internal:3128")))
+
+
 
 (require 'projectile)
+
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+(setq inferior-lisp-program "sbcl")
